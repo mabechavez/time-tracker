@@ -1,0 +1,28 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    App\Application\Service\CreateTaskUseCase:
+        arguments:
+            $taskRepository: '@App\Infrastructure\Persistence\DoctrineTaskRepository'
+            $taskService: '@App\Domain\Model\Task\TaskService'
+
+    App\Infrastructure\Persistence\DoctrineTaskRepository:
+        arguments:
+            $registry: '@doctrine'
+    
+    App\Domain\Model\Task\TaskService: ~
+    
+    App\Infrastructure\Controller\TaskController:
+        arguments:
+            $createTaskUseCase: '@App\Application\Service\CreateTaskUseCase'

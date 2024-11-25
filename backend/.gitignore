@@ -1,0 +1,27 @@
+# Ignorar archivos sensibles
+.env
+.env.local
+.env.*.local
+config/secrets/
+
+# Ignorar el directorio de caché y logs de Symfony
+/var/
+/vendor/
+
+# Ignorar el directorio de dependencias de Composer
+/composer.lock
+/composer.phar
+
+# Ignorar el directorio de sesiones de Symfony
+/sessions/
+
+# Ignorar archivos temporales de Symfony
+/.idea
+/.vscode
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
+
+.DS_Store
